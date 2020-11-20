@@ -1,4 +1,4 @@
-﻿namespace NBomber.Plugins.Http.CSharp
+namespace NBomber.Plugins.Http.CSharp
 
 open System
 open System.Net.Http
@@ -12,6 +12,20 @@ open NBomber.Plugins.Http.FSharp
 
 type Http =
     static member CreateRequest(method: string, url: string) = Http.createRequest method url
+
+[<Extension>]
+type HttpExt =
+    [<Extension>]
+    static member Get(url: string) =
+        url |> Http.createRequest "GET"
+
+    [<Extension>]
+    static member Post(url: string) =
+        url |> Http.createRequest "POST"
+
+    [<Extension>]
+    static member Put(url: string) =
+        url |> Http.createRequest "PUT"
 
 [<Extension>]
 type HttpRequestExt =
